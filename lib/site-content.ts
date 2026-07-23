@@ -213,16 +213,16 @@ export const leaders = [
     name: "Jacob Chazireni",
     role: "National Project Operations Coordinator · Agroforestry Specialist Technician",
     detail:
-      "Coordinates organic turmeric and medicinal herbs production for the German market, driving certification of outgrower farmers and full traceability records.",
+      "Coordinates organic turmeric and medicinal herbs production agronomy and budgets for the German market, driving certification of outgrower farmers and full farm records updates for traceability.",
     photoSrc: "/images/leaders/jacob-chazireni.jpg",
     photoPlaceholder: false,
     socials: true,
   },
   {
     name: "Engr. Doc Godfrey Marange",
-    role: "Agronomy Budgets & Logistics Guidance",
+    role: "Product Offtaker Market Director & Market Logistics",
     detail:
-      "Takes care of agronomy budgets and guidance on all the necessary logistics and coordination through the process of certification on the outgrower farmers on Mabagrown, Ecocert, Fairtrade and EU certifications.",
+      "Overall product offtaker, necessary logistics and leading through the process of certification on the outgrower farmers on Mabagrown, Ecocert, Fairtrade and EU certifications.",
     photoSrc: "/images/leaders/godfrey-marange.jpg",
     photoPlaceholder: false,
     socials: false,
