@@ -220,9 +220,9 @@ export const leaders = [
   },
   {
     name: "Engr. Doc Godfrey Marange",
-    role: "Product Offtaker Market Director & Market Logistics",
+    role: "Product Offtaker Market Director & Market Logistics and Training",
     detail:
-      "Overall product offtaker, necessary logistics and leading through the process of certification on the outgrower farmers on Mabagrown, Ecocert, Fairtrade and EU certifications.",
+      "Overall product offtaker, necessary logistics and training and leading through the process of certification on the outgrower farmers on Mabagrown, Ecocert, Fairtrade and EU certifications.",
     photoSrc: "/images/leaders/godfrey-marange.jpg",
     photoPlaceholder: false,
     socials: false,
