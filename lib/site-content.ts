@@ -16,7 +16,7 @@ export const navLinks = [
   { label: "Production", href: "#production" },
   { label: "Gallery", href: "#gallery" },
   { label: "News", href: "#news" },
-  { label: "Leadership", href: "#leadership" },
+  { label: "Directors", href: "#leadership" },
   { label: "Certifications", href: "#certifications" },
   { label: "Partners", href: "#partners" },
   { label: "Contact", href: "#contact" },

@@ -8,9 +8,9 @@ export function Leadership() {
     <section id="leadership" className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Leadership</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Directors</span>
           <h2 className="mt-3 text-balance font-serif text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            The people behind the project
+            Project directors
           </h2>
         </Reveal>
 
@@ -27,13 +27,13 @@ export function Leadership() {
           {leaders.map((leader, i) => (
             <Reveal key={leader.name} delay={i * 90}>
               <article className="flex h-full flex-col items-center rounded-3xl border border-border bg-card p-8 text-center shadow-sm">
-                <div className="relative aspect-square w-full max-w-[220px] overflow-hidden rounded-2xl ring-4 ring-gold/30">
+                <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full ring-4 ring-gold/35 shadow-md">
                   <Image
                     src={leader.photoSrc}
                     alt={leader.name}
                     fill
-                    sizes="220px"
-                    className="object-cover object-top"
+                    sizes="240px"
+                    className="object-cover object-center"
                   />
                 </div>
                 <h3 className="mt-5 font-serif text-2xl font-semibold text-foreground">{leader.name}</h3>
