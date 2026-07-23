@@ -35,11 +35,10 @@ export function About() {
               <p className="mt-2 text-sm font-medium text-accent">{company.tagline}</p>
               <p className="mt-5 text-pretty leading-relaxed text-muted-foreground">
                 {company.name} produces certified organic Lakadong turmeric and medicinal herbs strictly for the German
-                pharmaceutical industry, extending out to European, American and other international markets. As a
-                subsidiary of {company.parent} ({company.parentShort}), we carry forward the structured, traceable and
-                sustainable outgrower programme — anchored by partnership with the University of Bonn and more than 60
-                family-owned pharmaceutical companies — that delivers consistent, high-curcumin turmeric the world can
-                trust.
+                pharmaceutical industry, extending to European, American and other international markets. As a subsidiary
+                of {company.parent} ({company.parentShort}), we carry forward the structured, traceable and sustainable
+                outgrower programme — anchored by partnership with the University of Bonn and more than 60 family-owned
+                pharmaceutical companies — that delivers consistent, high-curcumin turmeric the world can trust.
               </p>
             </Reveal>
 
@@ -53,7 +52,7 @@ export function About() {
                 {
                   icon: Target,
                   title: "Our Mission",
-                  text: "A smooth, successful, structured and modelled organic turmeric and medicinal herbs production for strictly German markets.",
+                  text: "Smooth, successful, structured and modelled organic turmeric and medicinal herbs production strictly for German markets.",
                 },
                 {
                   icon: Ship,
@@ -63,7 +62,7 @@ export function About() {
                 {
                   icon: Globe2,
                   title: "Global Markets",
-                  text: "Germany and Europe first, stretching out to American and other international pharmaceutical markets.",
+                  text: "Germany and Europe first, extending to American and other international pharmaceutical markets.",
                 },
               ].map((item, i) => (
                 <Reveal key={item.title} delay={i * 90}>

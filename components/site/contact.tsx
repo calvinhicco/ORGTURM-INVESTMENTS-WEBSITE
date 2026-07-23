@@ -52,7 +52,7 @@ export function Contact() {
           </h2>
           <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
             Whether you are an outgrower farmer, a buyer or an institution, reach out to ORGTURM INVESTMENTS Private
-            Limited — a subsidiary of GAHS — to join the German market organic turmeric production programme.
+            Limited — a subsidiary of GAHS — to join the organic turmeric production programme for the German market.
           </p>
         </Reveal>
 
