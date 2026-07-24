@@ -341,6 +341,11 @@ export const galleryItems: GalleryItem[] = [
   { src: "/videos/video-070.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
   { src: "/videos/video-071.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
   { src: "/videos/video-072.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-073.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-074.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-075.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-076.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-077.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
 ]
 
 export const partners = [
