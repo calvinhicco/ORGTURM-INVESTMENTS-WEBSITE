@@ -1,41 +1,43 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/site/reveal"
-
-const details = [
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+263 773 355 153",
-    href: "tel:+263773355153",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: "jackychaz3@gmail.com",
-    href: "mailto:jackychaz3@gmail.com",
-  },
-  {
-    icon: MapPin,
-    label: "Coordination",
-    value: "National Project Operations \u00b7 German Market Programme",
-    href: undefined,
-  },
-  {
-    icon: Clock,
-    label: "Growing Season",
-    value: "7 to 9 months, certification year-round",
-    href: undefined,
-  },
-]
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 export function Contact() {
+  const { data } = useSiteContent()
+  const { contact } = data
   const [submitted, setSubmitted] = useState(false)
+
+  const details = [
+    {
+      icon: Phone,
+      label: "Phone",
+      value: contact.phone,
+      href: `tel:${contact.phone.replace(/\s+/g, "")}`,
+    },
+    {
+      icon: Mail,
+      label: "Email",
+      value: contact.email,
+      href: `mailto:${contact.email}`,
+    },
+    {
+      icon: MapPin,
+      label: "Coordination",
+      value: contact.coordination,
+      href: undefined,
+    },
+    {
+      icon: Clock,
+      label: "Growing Season",
+      value: contact.season,
+      href: undefined,
+    },
+  ]
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -48,12 +50,9 @@ export function Contact() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Contact</span>
           <h2 className="mt-3 text-balance font-serif text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            Partner with ORGTURM INVESTMENTS
+            {contact.heading}
           </h2>
-          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-            Whether you are an outgrower farmer, a buyer or an institution, reach out to ORGTURM INVESTMENTS Private
-            Limited — a subsidiary of GAHS — to join the organic turmeric production programme for the German market.
-          </p>
+          <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">{contact.intro}</p>
         </Reveal>
 
         <div className="mt-14 grid gap-10 lg:grid-cols-5">

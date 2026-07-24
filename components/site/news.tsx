@@ -1,9 +1,14 @@
+"use client"
+
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { Reveal } from "@/components/site/reveal"
-import { newsItems } from "@/lib/site-content"
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 export function News() {
+  const { data } = useSiteContent()
+  const newsItems = data.newsItems
+
   return (
     <section id="news" className="bg-secondary/40 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,11 +25,11 @@ export function News() {
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {newsItems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 100}>
+            <Reveal key={item.id} delay={i * 100}>
               <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
-                    src={item.image || "/placeholder.svg"}
+                    src={item.image || "/images/gallery/crop-35.jpg"}
                     alt={item.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -39,11 +44,9 @@ export function News() {
                   <h3 className="mt-2 text-balance font-serif text-xl font-semibold leading-snug text-foreground">
                     {item.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-muted-foreground">
-                    {item.excerpt}
-                  </p>
+                  <p className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-muted-foreground">{item.excerpt}</p>
                   <a
-                    href={item.href}
+                    href="#news"
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-emerald-deep"
                   >
                     Read more

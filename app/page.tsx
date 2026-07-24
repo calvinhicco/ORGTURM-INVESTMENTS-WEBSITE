@@ -11,10 +11,11 @@ import { Partners } from "@/components/site/partners"
 import { Contact } from "@/components/site/contact"
 import { Footer } from "@/components/site/footer"
 import { FloatingActions } from "@/components/site/floating-actions"
+import { SiteContentProvider } from "@/components/site/site-content-provider"
 
 export default function Page() {
   return (
-    <>
+    <SiteContentProvider>
       <Navbar />
       <main>
         <Hero />
@@ -30,6 +31,6 @@ export default function Page() {
       </main>
       <Footer />
       <FloatingActions />
-    </>
+    </SiteContentProvider>
   )
 }

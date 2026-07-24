@@ -1,9 +1,38 @@
+"use client"
+
 import Image from "next/image"
 import { Globe2, Target, Ship, Building2 } from "lucide-react"
 import { Reveal } from "@/components/site/reveal"
-import { company, postCovidStatement, germanDemandStatement } from "@/lib/site-content"
+import { postCovidStatement, germanDemandStatement } from "@/lib/site-content"
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 export function About() {
+  const { data } = useSiteContent()
+  const { company, about } = data
+
+  const cards = [
+    {
+      icon: Building2,
+      title: "Our Structure",
+      text: `${company.shortName} operates as a subsidiary of ${company.parent} (${company.parentShort}), delivering the organic turmeric production programme for the German market.`,
+    },
+    {
+      icon: Target,
+      title: "Our Mission",
+      text: about.mission,
+    },
+    {
+      icon: Ship,
+      title: "Export Focus",
+      text: about.exportFocus,
+    },
+    {
+      icon: Globe2,
+      title: "Global Markets",
+      text: "Germany and Europe first, extending to American and other international pharmaceutical markets.",
+    },
+  ]
+
   return (
     <section id="about" className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -13,10 +42,10 @@ export function About() {
               <div className="overflow-hidden rounded-3xl shadow-xl">
                 <Image
                   src="/images/about-crops.jpg"
-                  alt="Rows of organic turmeric crops growing in the field"
+                  alt="ORGTURM team and partners standing among organic turmeric crop rows"
                   width={720}
                   height={820}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover object-[center_30%]"
                 />
               </div>
               <div className="absolute -bottom-6 -right-4 hidden max-w-[220px] rounded-2xl border border-border bg-card p-5 shadow-lg sm:block">
@@ -33,38 +62,11 @@ export function About() {
                 {company.name}
               </h2>
               <p className="mt-2 text-sm font-medium text-accent">{company.tagline}</p>
-              <p className="mt-5 text-pretty leading-relaxed text-muted-foreground">
-                {company.name} produces certified organic Lakadong turmeric and medicinal herbs strictly for the German
-                pharmaceutical industry, extending to European, American and other international markets. As a subsidiary
-                of {company.parent} ({company.parentShort}), we carry forward the structured, traceable and sustainable
-                outgrower programme — anchored by partnership with the University of Bonn and more than 60 family-owned
-                pharmaceutical companies — that delivers consistent, high-curcumin turmeric the world can trust.
-              </p>
+              <p className="mt-5 text-pretty leading-relaxed text-muted-foreground">{about.body}</p>
             </Reveal>
 
             <div className="mt-8 grid gap-5">
-              {[
-                {
-                  icon: Building2,
-                  title: "Our Structure",
-                  text: `${company.shortName} operates as a subsidiary of ${company.parent} (${company.parentShort}), delivering the organic turmeric production programme for the German market.`,
-                },
-                {
-                  icon: Target,
-                  title: "Our Mission",
-                  text: "Smooth, successful, structured and modelled organic turmeric and medicinal herbs production strictly for German markets.",
-                },
-                {
-                  icon: Ship,
-                  title: "Export Focus",
-                  text: "End-to-end quality from GPS-mapped soil sampling to consignments shipped to Germany once samples qualify.",
-                },
-                {
-                  icon: Globe2,
-                  title: "Global Markets",
-                  text: "Germany and Europe first, extending to American and other international pharmaceutical markets.",
-                },
-              ].map((item, i) => (
+              {cards.map((item, i) => (
                 <Reveal key={item.title} delay={i * 90}>
                   <div className="flex gap-4 rounded-2xl border border-border bg-card p-5">
                     <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">

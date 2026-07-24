@@ -1,9 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import { Reveal } from "@/components/site/reveal"
-import { leadershipNarrative, leaders } from "@/lib/site-content"
+import { leadershipNarrative } from "@/lib/site-content"
 import { jacobSocials } from "@/components/site/social-icons"
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 export function Leadership() {
+  const { data } = useSiteContent()
+  const leaders = data.leaders
+
   return (
     <section id="leadership" className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -25,7 +31,7 @@ export function Leadership() {
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-7 sm:grid-cols-2">
           {leaders.map((leader, i) => (
-            <Reveal key={leader.name} delay={i * 90}>
+            <Reveal key={leader.id} delay={i * 90}>
               <article className="flex h-full flex-col items-center rounded-3xl border border-border bg-card p-8 text-center shadow-sm">
                 <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full ring-4 ring-gold/35 shadow-md">
                   <Image
@@ -39,7 +45,7 @@ export function Leadership() {
                 <h3 className="mt-5 font-serif text-2xl font-semibold text-foreground">{leader.name}</h3>
                 <p className="mt-1 text-sm font-medium text-accent">{leader.role}</p>
                 <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">{leader.detail}</p>
-                {leader.socials && (
+                {i === 0 && (
                   <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                     {jacobSocials.map(({ name, href, Icon }) => (
                       <a
@@ -47,7 +53,7 @@ export function Leadership() {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Jacob Chazireni on ${name}`}
+                        aria-label={`${leader.name} on ${name}`}
                         className="flex size-10 items-center justify-center rounded-full bg-secondary text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                       >
                         <Icon className="size-5" />

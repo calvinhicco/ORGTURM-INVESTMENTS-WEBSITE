@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Menu, X, Search, Moon, Sun, Download } from "lucide-react"
 import { company, navLinks } from "@/lib/site-content"
 import { cn } from "@/lib/utils"
+import { AdminTrigger } from "@/components/admin/admin-portal"
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -122,7 +123,7 @@ export function Navbar() {
           <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-6">
             <ul className="flex items-center gap-1 overflow-x-auto py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.href} className="flex items-center gap-1">
                   <a
                     href={link.href}
                     className={cn(
@@ -134,6 +135,7 @@ export function Navbar() {
                   >
                     {link.label}
                   </a>
+                  {link.href === "#contact" && <AdminTrigger />}
                 </li>
               ))}
             </ul>
@@ -168,17 +170,23 @@ export function Navbar() {
           </div>
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={cn(
-                  "rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-secondary hover:text-primary",
-                  activeHref === link.href ? "bg-primary/10 text-primary" : "text-foreground",
+              <div key={link.href} className="flex items-center gap-1">
+                <a
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={cn(
+                    "flex-1 rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-secondary hover:text-primary",
+                    activeHref === link.href ? "bg-primary/10 text-primary" : "text-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+                {link.href === "#contact" && (
+                  <span className="pr-2 text-primary">
+                    <AdminTrigger />
+                  </span>
                 )}
-              >
-                {link.label}
-              </a>
+              </div>
             ))}
           </div>
           <a

@@ -1,4 +1,4 @@
-// Site content. Long-form passages preserve client meaning with light grammatical polish.
+﻿// Site content. Long-form passages preserve client meaning with light grammatical polish.
 
 export const company = {
   name: "ORGTURM INVESTMENTS Private Limited",
@@ -29,7 +29,7 @@ export const productionManual = {
       heading: "Background",
       icon: "Sprout",
       paragraphs: [
-        "Curcuma longa is commonly known as turmeric. It has several varieties of species, of which we are mainly producing Lakadong Turmeric, which has a high curcumin content of 6–7.5%. The crop is a rhizomatous herbaceous perennial plant in the family Zingiberaceae of the ginger plant. It is a flowering plant native to India, producing white and yellow to purple colours. Turmeric, primarily through its active compound curcumin, offers potent anti-inflammatory, antioxidant and antimicrobial benefits. It supports joint health, eases arthritis pain, improves digestion and acts as a cardio-protective agent. It also promotes brain health, aids in weight loss, improves skin conditions and anti-ageing, and offers many more medicinal benefits.",
+        "Curcuma longa is commonly known as turmeric. It has several varieties of species, of which we are mainly producing Lakadong Turmeric, which has a high curcumin content of 6â€“7.5%. The crop is a rhizomatous herbaceous perennial plant in the family Zingiberaceae of the ginger plant. It is a flowering plant native to India, producing white and yellow to purple colours. Turmeric, primarily through its active compound curcumin, offers potent anti-inflammatory, antioxidant and antimicrobial benefits. It supports joint health, eases arthritis pain, improves digestion and acts as a cardio-protective agent. It also promotes brain health, aids in weight loss, improves skin conditions and anti-ageing, and offers many more medicinal benefits.",
         "The post-COVID era has therefore led to a very sharp rise in demand for what we are now introducing as organically produced turmeric, strictly for our German pharmaceutical industry, where the following document seeks to outline the proper organic turmeric crop production management.",
       ],
     },
@@ -43,7 +43,7 @@ export const productionManual = {
         "Buffer zones of 200 to 300 m are identified and marked where there is a potential risk of agro-synthetic chemical compound contamination from adjacent activities.",
         "Detailing on slope, insect pests with pesticide, herbicides and insecticides, as well as wind-drift management.",
         "Certification continues throughout the 7 to 9 months growing season, where our team continually and randomly makes visits to all our valued committed farmers. Documentation of operational activities is done at farm level, to which traceability checks are made with reference.",
-        "The best soil types for the production of organic turmeric would require well-drained sandy loam soils of pH 4.5–7.5, thriving in temperatures averaging 20–35°C. These soils should be naturally virgin, or land that has been laid fallow for up to 2–3 years, free from any agro-synthetic chemical contamination ranging from common AN fertilizer, pesticides, insecticides and herbicides.",
+        "The best soil types for the production of organic turmeric would require well-drained sandy loam soils of pH 4.5â€“7.5, thriving in temperatures averaging 20â€“35Â°C. These soils should be naturally virgin, or land that has been laid fallow for up to 2â€“3 years, free from any agro-synthetic chemical contamination ranging from common AN fertilizer, pesticides, insecticides and herbicides.",
       ],
     },
     {
@@ -58,16 +58,16 @@ export const productionManual = {
         "Vegetative mulch, green or dead, is used to cover the first leaves of the tubers after planting to provide sound shade, avoiding too much direct heat from sun rays on the tender growing auxiliary leaflet.",
         "Nutrient organic basal setting which would be consistently backed up by our Relict Genesis Liquid Fertilizer.",
         "Seed is also treated with Relict P before planting at a rate of 500 ml per 200 l, soaked overnight, or sprays are made enough to wet all the seed before planting and kept in a dark room for up to 2 weeks for effective sprouting.",
-        "The seedlings after sprouting are carefully cut into individual seedlings which are effectively planted at an effective spacing of 20 cm × 20 cm on the fertility trenches assumed at 100 m × 1.4 m × 0.3 m deep beds, making a total of 50 beds.",
-        "For plant count we only use width × length.",
+        "The seedlings after sprouting are carefully cut into individual seedlings which are effectively planted at an effective spacing of 20 cm Ã— 20 cm on the fertility trenches assumed at 100 m Ã— 1.4 m Ã— 0.3 m deep beds, making a total of 50 beds.",
+        "For plant count we only use width Ã— length.",
         "Plants along the length\n 100 m / 0.2 m = 501 planting stations",
-        "Total plants across the width bed\n1.4 m / 0.2 m = 8 planting stations\n  8 × 501 = 4008 plants per bed.",
+        "Total plants across the width bed\n1.4 m / 0.2 m = 8 planting stations\n  8 Ã— 501 = 4008 plants per bed.",
         "Drip irrigation systems are effectively recommended for this project.",
-        "Spacing: 0.20 m × 0.20 m = 0.04 m²/plant\nBed area: 100 m × 1.4 m = 140 m²/bed (ignoring catwalk for now)\nTotal bed area: 50 beds × 140 m² = 8000 m² = 0.8 ha",
-        "Plants per bed: 140 m² / = 4008 plants\nPlant population: 8000 m² / = 200 400 plants per ha where catwalk of 0.4 m has been factored out already.",
-        "It is also practically assumed that effectively 200 400 plants will definitely be produced, all things managed to standard, where a provision of 10% for mortality rate can be factored in, giving us a total of 180 360 plants after 7–9 months of production.",
-        "Proper management has proven to give a productivity rate per ha of up to more than 0.5 kg to 1.5 kg per plant, which gives us an estimated total yield of 180 000 kg as the maximum possible and an average minimum of nothing less than 40 000 kg, selling at a minimum of nothing less than 5€ to 20€ per kg.",
-        "A marking for the pitting box has been designed 1 m × 1.4 m for the smooth management of the seed population per ha, which gives us 48 pits per each box where a farmer will not adopt the drip irrigation system installation services.",
+        "Spacing: 0.20 m Ã— 0.20 m = 0.04 mÂ²/plant\nBed area: 100 m Ã— 1.4 m = 140 mÂ²/bed (ignoring catwalk for now)\nTotal bed area: 50 beds Ã— 140 mÂ² = 8000 mÂ² = 0.8 ha",
+        "Plants per bed: 140 mÂ² / = 4008 plants\nPlant population: 8000 mÂ² / = 200 400 plants per ha where catwalk of 0.4 m has been factored out already.",
+        "It is also practically assumed that effectively 200 400 plants will definitely be produced, all things managed to standard, where a provision of 10% for mortality rate can be factored in, giving us a total of 180 360 plants after 7â€“9 months of production.",
+        "Proper management has proven to give a productivity rate per ha of up to more than 0.5 kg to 1.5 kg per plant, which gives us an estimated total yield of 180 000 kg as the maximum possible and an average minimum of nothing less than 40 000 kg, selling at a minimum of nothing less than 5â‚¬ to 20â‚¬ per kg.",
+        "A marking for the pitting box has been designed 1 m Ã— 1.4 m for the smooth management of the seed population per ha, which gives us 48 pits per each box where a farmer will not adopt the drip irrigation system installation services.",
       ],
     },
     {
@@ -106,7 +106,7 @@ export const productionManual = {
   ],
 }
 
-// Directors narrative — client meaning preserved with light grammatical polish.
+// Directors narrative â€” client meaning preserved with light grammatical polish.
 export const leadershipNarrative = `The Original Son of the soil, his unbeatable intelligence and humble initiatives have remarkably risen through all the roughest and thickest storms of all negative odds, trials and temptations discouraging the establishment of the smooth, successful, structured and modelled organic turmeric and medicinal herbs production for strictly German markets, stretching out to all European and American markets.
 
 With his life, for the past last 45 years, Engr. Doc Godfrey Marange, a German citizen and Zimbabwean-born citizen, has founded Global African Herbal Solutions and has been the pivotal anchorage sustaining the leverage through partnership with the University of Bonn in Germany, together with more than 60-plus family-owned pharmaceutical companies that happen to be the market, notwithstanding the Botswanaian Gatekeepers companies which embraced the humble initiatives seriously, taking the organic turmeric production project for the German market to another chapter as we keep testifying and witnessing the wonders revolving around this very market.
@@ -145,13 +145,13 @@ export const whyChooseUs = [
   { title: "International Partnerships", desc: "Anchored by the University of Bonn and 60+ family-owned pharmaceutical companies.", icon: "Handshake" },
 ]
 
-export const galleryCategories = ["All", "Farms", "Turmeric", "Irrigation", "Harvest", "Project"]
+export const galleryCategories = ["All", "Farms", "Turmeric", "Irrigation", "Harvest", "Project", "Videos"]
 
 export type GalleryItem = {
   src: string
   alt: string
   category: string
-  type: "image"
+  type: "image" | "video"
 }
 
 export const galleryItems: GalleryItem[] = [
@@ -310,7 +310,7 @@ export const newsItems = [
 export const leaders = [
   {
     name: "Jacob Chazireni",
-    role: "National Project Operations Coordinator · Agroforestry Specialist Technician",
+    role: "National Project Operations Coordinator Â· Agroforestry Specialist Technician",
     detail:
       "Coordinates organic turmeric and medicinal herbs production, agronomy and budgets for the German market, driving certification of outgrower farmers and full farm records updates for traceability.",
     photoSrc: "/images/leaders/jacob-chazireni.jpg",

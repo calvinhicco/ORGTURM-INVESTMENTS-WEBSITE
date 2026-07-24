@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import {
   Sprout,
   MapPin,
@@ -16,6 +16,7 @@ import {
 import { productionManual } from "@/lib/site-content"
 import { Reveal } from "@/components/site/reveal"
 import { cn } from "@/lib/utils"
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 const iconMap: Record<string, LucideIcon> = {
   Sprout,
@@ -24,12 +25,24 @@ const iconMap: Record<string, LucideIcon> = {
   Droplets,
   Leaf,
   Package,
+  background: Sprout,
+  "site-selection": MapPin,
+  "land-preparation": Shovel,
+  irrigation: Droplets,
+  "crop-management": Leaf,
+  harvesting: Package,
 }
 
-const sectionIds = productionManual.sections.map((s) => s.id)
-
 export function ProductionStandards() {
-  const [open, setOpen] = useState<string | null>(productionManual.sections[0].id)
+  const { data } = useSiteContent()
+  const sections = data.productionSections
+  const title = data.productionTitle
+  const sectionIds = useMemo(() => sections.map((s) => s.id), [sections])
+  const [open, setOpen] = useState<string | null>(sections[0]?.id ?? null)
+
+  useEffect(() => {
+    if (!open && sections[0]) setOpen(sections[0].id)
+  }, [sections, open])
 
   useEffect(() => {
     const syncFromHash = () => {
@@ -44,7 +57,7 @@ export function ProductionStandards() {
     syncFromHash()
     window.addEventListener("hashchange", syncFromHash)
     return () => window.removeEventListener("hashchange", syncFromHash)
-  }, [])
+  }, [sectionIds])
 
   return (
     <section id="production" className="scroll-mt-32 bg-secondary/40 py-20 sm:py-28">
@@ -52,7 +65,7 @@ export function ProductionStandards() {
         <Reveal className="text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Production Standards</span>
           <h2 className="mt-3 text-balance font-serif text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-            {productionManual.title}
+            {title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
             The complete standard manual governing our organic turmeric crop production management, reproduced in full.
@@ -61,8 +74,9 @@ export function ProductionStandards() {
         </Reveal>
 
         <div className="mt-12 space-y-4">
-          {productionManual.sections.map((section, i) => {
-            const Icon = iconMap[section.icon] ?? FileText
+          {sections.map((section, i) => {
+            const original = productionManual.sections.find((s) => s.id === section.id)
+            const Icon = iconMap[original?.icon || section.id] ?? FileText
             const isOpen = open === section.id
             return (
               <Reveal key={section.id} delay={i * 60}>

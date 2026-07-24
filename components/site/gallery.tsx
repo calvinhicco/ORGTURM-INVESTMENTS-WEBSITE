@@ -2,18 +2,31 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
-import { X, ChevronLeft, ChevronRight, ImageIcon } from "lucide-react"
-import { galleryCategories, galleryItems } from "@/lib/site-content"
+import { X, ChevronLeft, ChevronRight, ImageIcon, Play } from "lucide-react"
+import { galleryCategories } from "@/lib/site-content"
 import { Reveal } from "@/components/site/reveal"
 import { cn } from "@/lib/utils"
+import { useSiteContent } from "@/components/site/site-content-provider"
 
 export function Gallery() {
+  const { data } = useSiteContent()
+  const galleryItems = data.galleryItems
   const [category, setCategory] = useState("All")
   const [lightbox, setLightbox] = useState<number | null>(null)
 
+  const categories = useMemo(() => {
+    const hasVideos = galleryItems.some((g) => g.type === "video" || g.category === "Videos")
+    const base = galleryCategories.includes("Videos")
+      ? galleryCategories
+      : hasVideos
+        ? [...galleryCategories, "Videos"]
+        : galleryCategories
+    return base
+  }, [galleryItems])
+
   const filtered = useMemo(
     () => (category === "All" ? galleryItems : galleryItems.filter((g) => g.category === category)),
-    [category],
+    [category, galleryItems],
   )
 
   useEffect(() => {
@@ -31,6 +44,8 @@ export function Gallery() {
     }
   }, [lightbox, filtered.length])
 
+  const active = lightbox !== null ? filtered[lightbox] : null
+
   return (
     <section id="gallery" className="bg-secondary/40 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -40,7 +55,7 @@ export function Gallery() {
             From our fields
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-            Crop, field, harvest and project photography from organic turmeric production.
+            {data.galleryIntro}
           </p>
         </Reveal>
 
@@ -61,7 +76,7 @@ export function Gallery() {
         </Reveal>
 
         <div className="mt-10 flex flex-wrap justify-center gap-2">
-          {galleryCategories.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat}
               type="button"
@@ -81,22 +96,43 @@ export function Gallery() {
         <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
           {filtered.map((item, i) => (
             <button
-              key={item.src}
+              key={item.id || item.src}
               type="button"
               onClick={() => setLightbox(i)}
               className="group relative block w-full overflow-hidden rounded-2xl shadow-sm"
             >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                width={600}
-                height={i % 3 === 0 ? 760 : i % 3 === 1 ? 520 : 640}
-                loading="lazy"
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+              {item.type === "video" ? (
+                <div className="relative aspect-[3/4] w-full bg-emerald-deep/90">
+                  <video
+                    src={item.src}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-emerald-deep/25">
+                    <span className="flex size-14 items-center justify-center rounded-full bg-gold text-emerald-deep shadow-lg">
+                      <Play className="size-6 fill-current" />
+                    </span>
+                  </span>
+                </div>
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={600}
+                  height={i % 3 === 0 ? 760 : i % 3 === 1 ? 520 : 640}
+                  loading="lazy"
+                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
               <span className="absolute inset-0 flex items-end bg-gradient-to-t from-emerald-deep/80 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100">
                 <span className="flex items-center gap-2 p-4 text-left">
-                  <ImageIcon className="size-4 text-gold" />
+                  {item.type === "video" ? (
+                    <Play className="size-4 text-gold" />
+                  ) : (
+                    <ImageIcon className="size-4 text-gold" />
+                  )}
                   <span className="rounded-full bg-gold/90 px-2.5 py-1 text-xs font-semibold text-emerald-deep">
                     {item.category}
                   </span>
@@ -107,7 +143,7 @@ export function Gallery() {
         </div>
       </div>
 
-      {lightbox !== null && filtered[lightbox] && (
+      {active && lightbox !== null && (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-emerald-deep/95 p-4">
           <button
             type="button"
@@ -126,14 +162,25 @@ export function Gallery() {
             <ChevronLeft className="size-6" />
           </button>
           <figure className="max-h-[85vh] max-w-4xl">
-            <Image
-              src={filtered[lightbox].src}
-              alt={filtered[lightbox].alt}
-              width={1200}
-              height={800}
-              className="max-h-[78vh] w-auto rounded-xl object-contain"
-            />
-            <figcaption className="mt-3 text-center text-sm text-white/80">{filtered[lightbox].alt}</figcaption>
+            {active.type === "video" ? (
+              <video
+                key={active.src}
+                src={active.src}
+                controls
+                autoPlay
+                playsInline
+                className="max-h-[78vh] w-auto max-w-full rounded-xl"
+              />
+            ) : (
+              <Image
+                src={active.src}
+                alt={active.alt}
+                width={1200}
+                height={800}
+                className="max-h-[78vh] w-auto rounded-xl object-contain"
+              />
+            )}
+            <figcaption className="mt-3 text-center text-sm text-white/80">{active.alt}</figcaption>
           </figure>
           <button
             type="button"
