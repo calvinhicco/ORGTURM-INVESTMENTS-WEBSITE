@@ -260,6 +260,14 @@ export const galleryItems: GalleryItem[] = [
   { src: "/images/gallery/uploads/upload-093.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
   { src: "/images/gallery/uploads/upload-094.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
   { src: "/images/gallery/uploads/upload-095.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-096.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-097.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-098.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-099.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-100.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-101.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-102.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
+  { src: "/images/gallery/uploads/upload-103.jpg", alt: "ORGTURM organic turmeric project photo", category: "Project", type: "image" },
 ]
 
 export const partners = [
