@@ -40,7 +40,7 @@ export function Gallery() {
             From our fields
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
-            Crop, field and harvest photography from organic turmeric production.
+            Crop, field, harvest and project photography from organic turmeric production.
           </p>
         </Reveal>
 
