@@ -293,6 +293,18 @@ export const galleryItems: GalleryItem[] = [
   { src: "/videos/video-022.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
   { src: "/videos/video-023.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
   { src: "/videos/video-024.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-025.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-026.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-027.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-028.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-029.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-030.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-031.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-032.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-033.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-034.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-035.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
+  { src: "/videos/video-036.mp4", alt: "ORGTURM organic turmeric project video", category: "Videos", type: "video" },
 ]
 
 export const partners = [
