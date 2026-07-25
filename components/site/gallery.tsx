@@ -81,11 +81,12 @@ export function Gallery() {
         <Reveal className="mt-12">
           <div className="relative w-full overflow-hidden rounded-3xl shadow-lg">
             <Image
-              src="/images/gallery/crop-33.jpg"
-              alt="Organic turmeric crop rows"
+              src="/images/gallery/production-banner.jpg"
+              alt="ORGTURM partner standing among organic turmeric crop rows"
               width={1400}
-              height={620}
-              className="h-[280px] w-full object-cover sm:h-[420px]"
+              height={900}
+              className="h-[280px] w-full object-cover object-[center_40%] sm:h-[420px]"
+              priority
             />
             <span className="absolute inset-0 bg-gradient-to-t from-emerald-deep/70 via-transparent to-transparent" />
             <span className="absolute bottom-6 left-6 right-6 font-serif text-2xl font-semibold text-white sm:text-3xl">

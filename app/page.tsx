@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/site/navbar"
 import { Hero } from "@/components/site/hero"
+import { BloomPages } from "@/components/site/bloom-pages"
 import { About } from "@/components/site/about"
 import { ProductionStandards } from "@/components/site/production-standards"
 import { WhyChooseUs } from "@/components/site/why-choose-us"
@@ -19,6 +20,7 @@ export default function Page() {
       <Navbar />
       <main>
         <Hero />
+        <BloomPages />
         <About />
         <ProductionStandards />
         <WhyChooseUs />

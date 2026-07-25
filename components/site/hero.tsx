@@ -4,20 +4,10 @@ import Image from "next/image"
 import { ArrowRight, ChevronDown, BadgeCheck } from "lucide-react"
 import { useSiteContent } from "@/components/site/site-content-provider"
 
-const heroStills = [
-  {
-    src: "/images/hero/flower-01.jpg",
-    alt: "Blooming turmeric flower with pink and white bracts in the field",
-  },
-  {
-    src: "/images/hero/flower-02.jpg",
-    alt: "Close-up of a fresh turmeric bloom among lush green leaves",
-  },
-  {
-    src: "/images/turmeric-rhizomes.jpg",
-    alt: "Fresh organic turmeric rhizomes cut open to show vivid orange flesh",
-  },
-] as const
+const rhizomeStill = {
+  src: "/images/turmeric-rhizomes.jpg",
+  alt: "Fresh organic turmeric rhizomes cut open to show vivid orange flesh",
+} as const
 
 export function Hero() {
   const { data } = useSiteContent()
@@ -61,7 +51,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 px-4 pb-16 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 px-4 pb-16 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.75fr)] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
         <div className="max-w-3xl animate-hero-rise">
           <p className="font-serif text-[1.65rem] font-bold leading-none tracking-tight text-gold sm:text-3xl lg:text-4xl">
             {company.shortName}
@@ -70,7 +60,6 @@ export function Hero() {
             {company.tagline}
           </p>
 
-          {/* Compact on phone — full certs from sm up */}
           <span className="mt-4 inline-flex max-w-full items-center gap-1.5 rounded-full border border-gold/45 bg-black/25 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-[2px] sm:mt-6 sm:gap-2 sm:px-4 sm:text-sm">
             <BadgeCheck className="size-3.5 shrink-0 text-gold sm:size-4" />
             <span className="sm:hidden">Certified Organic · German Market</span>
@@ -89,7 +78,7 @@ export function Hero() {
 
           <div className="mt-6 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:items-center sm:gap-3">
             <a
-              href="#about"
+              href="#bloom-1"
               className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto"
             >
               Learn More
@@ -102,32 +91,41 @@ export function Hero() {
               Contact Us
             </a>
           </div>
-        </div>
 
-        {/* Three stills — separate, equal frames on mobile and desktop */}
-        <div className="grid grid-cols-3 gap-2.5 sm:gap-3 lg:gap-4">
-          {heroStills.map((still, i) => (
-            <div
-              key={still.src}
-              className="relative aspect-[3/4] overflow-hidden rounded-sm ring-1 ring-white/35 animate-hero-rise"
-              style={{ animationDelay: `${160 + i * 120}ms` }}
-            >
+          {/* Mobile: rhizome still only */}
+          <div className="mt-7 lg:hidden">
+            <div className="relative mx-auto aspect-[4/5] max-w-xs overflow-hidden rounded-sm ring-1 ring-white/35 animate-hero-rise">
               <Image
-                src={still.src}
-                alt={still.alt}
+                src={rhizomeStill.src}
+                alt={rhizomeStill.alt}
                 fill
-                sizes="(max-width: 1024px) 30vw, 14vw"
+                sizes="80vw"
                 className="object-cover"
-                priority={i === 0}
+                priority
               />
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Desktop: rhizome still only */}
+        <div className="relative hidden lg:block">
+          <div className="pointer-events-none absolute -inset-8 rounded-full bg-gold/15 blur-3xl" aria-hidden />
+          <div className="relative mx-auto aspect-[3/4] max-w-md overflow-hidden rounded-sm ring-1 ring-white/35 animate-hero-rise shadow-2xl">
+            <Image
+              src={rhizomeStill.src}
+              alt={rhizomeStill.alt}
+              fill
+              sizes="28vw"
+              className="object-cover"
+              priority
+            />
+          </div>
         </div>
       </div>
 
       <a
-        href="#about"
-        aria-label="Scroll to about section"
+        href="#bloom-1"
+        aria-label="Scroll to turmeric bloom"
         className="absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 sm:block md:bottom-8"
       >
         <ChevronDown className="size-7 sm:size-8" />
