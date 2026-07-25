@@ -26,7 +26,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[100svh] items-end overflow-hidden lg:items-center"
+      className="relative flex min-h-[100svh] items-start overflow-hidden lg:items-center"
     >
       <Image
         src="/images/hero/field-bg.png"
@@ -61,7 +61,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-end px-4 pb-14 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-14 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center px-4 pb-16 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
         <div className="max-w-3xl animate-hero-rise">
           <p className="font-serif text-[1.65rem] font-bold leading-none tracking-tight text-gold sm:text-3xl lg:text-4xl">
             {company.shortName}
@@ -102,9 +102,40 @@ export function Hero() {
               Contact Us
             </a>
           </div>
+
+          {/* Mobile / tablet stills — compact overlapping strip */}
+          <div className="mt-7 lg:hidden">
+            <div className="relative mx-auto flex h-[9.25rem] max-w-md items-end justify-center sm:h-[11rem] sm:max-w-lg">
+              <div
+                className="absolute left-[2%] bottom-0 z-[1] h-[88%] w-[38%] overflow-hidden rounded-sm shadow-lg ring-1 ring-white/35 animate-hero-rise"
+                style={{ animationDelay: "160ms" }}
+              >
+                <Image src={heroStills[0].src} alt={heroStills[0].alt} fill sizes="38vw" className="object-cover" />
+              </div>
+              <div
+                className="absolute left-1/2 bottom-0 z-[3] h-full w-[42%] -translate-x-1/2 overflow-hidden rounded-sm shadow-xl ring-1 ring-white/40 animate-hero-rise"
+                style={{ animationDelay: "280ms" }}
+              >
+                <Image
+                  src={heroStills[1].src}
+                  alt={heroStills[1].alt}
+                  fill
+                  sizes="42vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div
+                className="absolute right-[2%] bottom-0 z-[2] h-[88%] w-[38%] overflow-hidden rounded-sm shadow-lg ring-1 ring-white/35 animate-hero-rise"
+                style={{ animationDelay: "400ms" }}
+              >
+                <Image src={heroStills[2].src} alt={heroStills[2].alt} fill sizes="38vw" className="object-cover" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Desktop collage only — mobile keeps the full-bleed field as the single visual */}
+        {/* Desktop collage */}
         <div className="relative hidden lg:block">
           <div className="pointer-events-none absolute -inset-8 rounded-full bg-gold/10 blur-3xl" aria-hidden />
           <div className="relative flex h-[min(72vh,640px)] flex-col justify-center">
@@ -140,7 +171,7 @@ export function Hero() {
       <a
         href="#about"
         aria-label="Scroll to about section"
-        className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 md:bottom-8"
+        className="absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 sm:block md:bottom-8"
       >
         <ChevronDown className="size-7 sm:size-8" />
       </a>
