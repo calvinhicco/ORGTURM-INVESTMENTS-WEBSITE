@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import {
   Lock,
   X,
@@ -16,6 +16,8 @@ import {
   Upload,
   Trash2,
   Loader2,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 import { useSiteContent } from "@/components/site/site-content-provider"
 import type { SiteData } from "@/lib/admin/types"
@@ -239,66 +241,10 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
             </button>
           </form>
         ) : (
-          <div className="grid min-h-0 flex-1 md:grid-cols-[210px_1fr]">
-            <nav className="relative shrink-0 border-b border-border md:border-b-0 md:border-r">
-              {/* Mobile: swipeable topic chips */}
-              <div className="md:hidden">
-                <p className="px-4 pt-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  Sections · swipe to see all
-                </p>
-                <div className="relative">
-                  <ul
-                    className="flex gap-2 overflow-x-auto overscroll-x-contain px-4 py-3 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden"
-                    style={{ WebkitOverflowScrolling: "touch" }}
-                  >
-                    {MENU.map((item) => (
-                      <li key={item.id} className="shrink-0 snap-start">
-                        <button
-                          type="button"
-                          onClick={() => setSection(item.id)}
-                          className={cn(
-                            "flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
-                            section === item.id
-                              ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border bg-card text-foreground",
-                          )}
-                        >
-                          <item.icon className="size-3.5 shrink-0" />
-                          {item.label}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent"
-                  />
-                </div>
-              </div>
+          <div className="grid min-h-0 min-w-0 flex-1 md:grid-cols-[210px_1fr]">
+            <AdminSectionNav section={section} onSelect={setSection} />
 
-              {/* Desktop: vertical mini menu */}
-              <ul className="hidden gap-1 p-3 md:flex md:flex-col">
-                {MENU.map((item) => (
-                  <li key={item.id}>
-                    <button
-                      type="button"
-                      onClick={() => setSection(item.id)}
-                      className={cn(
-                        "flex w-full items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors",
-                        section === item.id
-                          ? "bg-primary text-primary-foreground"
-                          : "text-foreground hover:bg-secondary",
-                      )}
-                    >
-                      <item.icon className="size-4 shrink-0" />
-                      {item.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="flex min-h-0 flex-col">
+            <div className="flex min-h-0 min-w-0 flex-col">
               <div className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5">
                 {section === "home" && (
                   <Fields>
@@ -681,6 +627,142 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
 
 const inputClass =
   "w-full rounded-xl border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/25"
+
+function AdminSectionNav({
+  section,
+  onSelect,
+}: {
+  section: SectionId
+  onSelect: (id: SectionId) => void
+}) {
+  const scrollerRef = useRef<HTMLUListElement>(null)
+  const [canLeft, setCanLeft] = useState(false)
+  const [canRight, setCanRight] = useState(false)
+
+  const updateEdges = () => {
+    const el = scrollerRef.current
+    if (!el) return
+    setCanLeft(el.scrollLeft > 4)
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+  }
+
+  useEffect(() => {
+    updateEdges()
+    const el = scrollerRef.current
+    if (!el) return
+    el.addEventListener("scroll", updateEdges, { passive: true })
+    window.addEventListener("resize", updateEdges)
+    return () => {
+      el.removeEventListener("scroll", updateEdges)
+      window.removeEventListener("resize", updateEdges)
+    }
+  }, [])
+
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el) return
+    const active = el.querySelector<HTMLElement>(`[data-section="${section}"]`)
+    active?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" })
+    // Allow layout to settle then refresh edge fades
+    requestAnimationFrame(updateEdges)
+  }, [section])
+
+  const slide = (dir: -1 | 1) => {
+    const el = scrollerRef.current
+    if (!el) return
+    el.scrollBy({ left: dir * Math.max(160, el.clientWidth * 0.65), behavior: "smooth" })
+  }
+
+  return (
+    <nav className="relative min-w-0 shrink-0 border-b border-border md:border-b-0 md:border-r">
+      {/* Mobile / tablet: horizontal slide strip */}
+      <div className="md:hidden">
+        <div className="flex items-center justify-between gap-2 px-3 pt-3">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Edit section</p>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              aria-label="Previous sections"
+              disabled={!canLeft}
+              onClick={() => slide(-1)}
+              className="flex size-8 items-center justify-center rounded-full border border-border bg-card text-foreground disabled:opacity-30"
+            >
+              <ChevronLeft className="size-4" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next sections"
+              disabled={!canRight}
+              onClick={() => slide(1)}
+              className="flex size-8 items-center justify-center rounded-full border border-border bg-card text-foreground disabled:opacity-30"
+            >
+              <ChevronRight className="size-4" />
+            </button>
+          </div>
+        </div>
+
+        <div className="relative">
+          <ul
+            ref={scrollerRef}
+            className="flex min-w-0 gap-2 overflow-x-auto overscroll-x-contain px-3 py-3 touch-pan-x [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {MENU.map((item) => (
+              <li key={item.id} className="shrink-0">
+                <button
+                  type="button"
+                  data-section={item.id}
+                  onClick={() => onSelect(item.id)}
+                  className={cn(
+                    "flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
+                    section === item.id
+                      ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                      : "border-border bg-card text-foreground",
+                  )}
+                >
+                  <item.icon className="size-3.5 shrink-0" />
+                  {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+          {canLeft && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent"
+            />
+          )}
+          {canRight && (
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent"
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Desktop: vertical mini menu */}
+      <ul className="hidden gap-1 p-3 md:flex md:flex-col">
+        {MENU.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              onClick={() => onSelect(item.id)}
+              className={cn(
+                "flex w-full items-center gap-2 whitespace-nowrap rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors",
+                section === item.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground hover:bg-secondary",
+              )}
+            >
+              <item.icon className="size-4 shrink-0" />
+              {item.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
 
 function Fields({ children }: { children: React.ReactNode }) {
   return <div className="space-y-4">{children}</div>
