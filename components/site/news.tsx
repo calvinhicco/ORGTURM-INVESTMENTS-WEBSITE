@@ -27,11 +27,13 @@ export function News() {
           {newsItems.map((item, i) => (
             <Reveal key={item.id} delay={i * 100}>
               <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <div className="relative aspect-[16/10] overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
                   <Image
                     src={item.image || "/images/gallery/crop-35.jpg"}
                     alt={item.title}
                     fill
+                    priority={i < 3}
+                    loading={i < 3 ? "eager" : "lazy"}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(min-width: 768px) 33vw, 100vw"
                   />

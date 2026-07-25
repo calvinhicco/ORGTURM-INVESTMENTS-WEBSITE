@@ -33,12 +33,14 @@ export function Leadership() {
           {leaders.map((leader, i) => (
             <Reveal key={leader.id} delay={i * 90}>
               <article className="flex h-full flex-col items-center rounded-3xl border border-border bg-card p-8 text-center shadow-sm">
-                <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full ring-4 ring-gold/35 shadow-md">
+                <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full bg-secondary ring-4 ring-gold/35 shadow-md">
                   <Image
                     src={leader.photoSrc}
                     alt={leader.name}
                     fill
-                    sizes="240px"
+                    priority
+                    loading="eager"
+                    sizes="(max-width: 640px) 60vw, 240px"
                     className="object-cover object-center"
                   />
                 </div>

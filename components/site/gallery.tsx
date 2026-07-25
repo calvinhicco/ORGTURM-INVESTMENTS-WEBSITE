@@ -157,13 +157,7 @@ export function Gallery() {
                   onClick={() => openItem(item.src)}
                   className="group relative aspect-video w-full overflow-hidden rounded-md bg-emerald-deep/90 ring-1 ring-border/60"
                 >
-                  <video
-                    src={videoSrc(item.src)}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                  <LazyVideoThumb src={item.src} />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/20">
                     <span className="flex size-9 items-center justify-center rounded-full bg-black/70 text-white shadow-md sm:size-10">
                       <Play className="size-4 fill-current sm:size-5" />
@@ -268,13 +262,17 @@ export function Gallery() {
                 >
                   {item.type === "video" ? (
                     <>
-                      <video
-                        src={videoSrc(item.src)}
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="h-full w-full object-cover"
-                      />
+                      {Math.abs(i - lightbox) <= 4 ? (
+                        <video
+                          src={videoSrc(item.src)}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <span className="block h-full w-full bg-emerald-deep/80" />
+                      )}
                       <span className="absolute inset-0 flex items-center justify-center bg-black/25">
                         <Play className="size-3.5 fill-white text-white" />
                       </span>
@@ -290,5 +288,42 @@ export function Gallery() {
         </div>
       )}
     </section>
+  )
+}
+
+/** Only fetch video metadata once the thumb is near the viewport — avoids flooding slow networks. */
+function LazyVideoThumb({ src }: { src: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(false)
+  const videoUrl = src.includes("#") ? src : `${src}#t=0.001`
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setActive(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "240px 0px", threshold: 0.01 },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} className="absolute inset-0 bg-emerald-deep/80">
+      {active && (
+        <video
+          src={videoUrl}
+          muted
+          playsInline
+          preload="metadata"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      )}
+    </div>
   )
 }

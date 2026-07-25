@@ -14,7 +14,7 @@ const heroStills = [
     alt: "Close-up of a fresh turmeric bloom among lush green leaves",
   },
   {
-    src: "/images/turmeric-rhizomes.png",
+    src: "/images/turmeric-rhizomes.jpg",
     alt: "Fresh organic turmeric rhizomes cut open to show vivid orange flesh",
   },
 ] as const

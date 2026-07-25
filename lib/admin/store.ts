@@ -72,9 +72,34 @@ export async function getSiteData(): Promise<SiteData> {
     } catch {
       // read-only environments may not allow seed write
     }
-    return seeded
+    return normalizeAssetPaths(seeded)
   }
-  return ensureDefaultVideos(data)
+  return normalizeAssetPaths(ensureDefaultVideos(data))
+}
+
+const LEGACY_PNG_TO_JPG: Record<string, string> = {
+  "/images/gallery-irrigation.png": "/images/gallery-irrigation.jpg",
+  "/images/gallery-turmeric-plant.png": "/images/gallery-turmeric-plant.jpg",
+  "/images/turmeric-rhizomes.png": "/images/turmeric-rhizomes.jpg",
+  "/images/logo-leaf.png": "/images/logo-leaf.jpg",
+}
+
+function normalizeAssetPaths(data: SiteData): SiteData {
+  return {
+    ...data,
+    galleryItems: data.galleryItems.map((g) => ({
+      ...g,
+      src: LEGACY_PNG_TO_JPG[g.src] || g.src,
+    })),
+    leaders: data.leaders.map((l) => ({
+      ...l,
+      photoSrc: LEGACY_PNG_TO_JPG[l.photoSrc] || l.photoSrc,
+    })),
+    newsItems: data.newsItems.map((n) => ({
+      ...n,
+      image: LEGACY_PNG_TO_JPG[n.image] || n.image,
+    })),
+  }
 }
 
 /** Re-attach built-in project videos if a saved CMS snapshot dropped them. */

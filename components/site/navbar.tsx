@@ -70,7 +70,7 @@ export function Navbar() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-[4.25rem] sm:px-6 lg:px-8">
           <a href="#home" className="flex min-w-0 items-center gap-2.5 sm:gap-3" aria-label={`${company.name} home`}>
             <span className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary ring-1 ring-gold/40 sm:size-11">
-              <Image src="/images/logo-leaf.png" alt="" width={44} height={44} className="size-full object-cover" />
+              <Image src="/images/logo-leaf.jpg" alt="" width={44} height={44} className="size-full object-cover" priority />
             </span>
             <span className="flex min-w-0 flex-col leading-tight">
               <span className="truncate font-serif text-sm font-bold tracking-tight text-foreground sm:text-base lg:text-lg">

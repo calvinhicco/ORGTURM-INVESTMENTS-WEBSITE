@@ -157,9 +157,9 @@ export type GalleryItem = {
 export const galleryItems: GalleryItem[] = [
   { src: "/images/gallery/crop-33.jpg", alt: "Rows of organic turmeric crops beside an irrigation channel", category: "Farms", type: "image" },
   { src: "/images/gallery/crop-35.jpg", alt: "Dense rows of healthy turmeric plants in the field", category: "Farms", type: "image" },
-  { src: "/images/gallery-irrigation.png", alt: "Drip irrigation system on raised turmeric beds", category: "Irrigation", type: "image" },
-  { src: "/images/gallery-turmeric-plant.png", alt: "Healthy green turmeric plant with flowering bloom", category: "Turmeric", type: "image" },
-  { src: "/images/turmeric-rhizomes.png", alt: "Freshly harvested turmeric rhizomes showing high curcumin", category: "Harvest", type: "image" },
+  { src: "/images/gallery-irrigation.jpg", alt: "Drip irrigation system on raised turmeric beds", category: "Irrigation", type: "image" },
+  { src: "/images/gallery-turmeric-plant.jpg", alt: "Healthy green turmeric plant with flowering bloom", category: "Turmeric", type: "image" },
+  { src: "/images/turmeric-rhizomes.jpg", alt: "Freshly harvested turmeric rhizomes showing high curcumin", category: "Harvest", type: "image" },
   { src: "/images/gallery/crop-10.jpg", alt: "Freshly harvested turmeric rhizomes piled after digging", category: "Harvest", type: "image" },
   { src: "/images/gallery/crop-29.jpg", alt: "Young turmeric plant emerging from the soil", category: "Turmeric", type: "image" },
   { src: "/images/gallery/crop-31.jpg", alt: "Turmeric stems with exposed rhizomes at the soil surface", category: "Turmeric", type: "image" },
