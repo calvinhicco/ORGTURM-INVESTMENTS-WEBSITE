@@ -78,8 +78,15 @@ export function Hero() {
 
           <div className="mt-6 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:items-center sm:gap-3">
             <a
+              href="#blooms"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto max-lg:hidden"
+            >
+              Learn More
+              <ArrowRight className="size-5" />
+            </a>
+            <a
               href="#bloom-1"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto lg:hidden"
             >
               Learn More
               <ArrowRight className="size-5" />
@@ -125,10 +132,17 @@ export function Hero() {
 
       <a
         href="#bloom-1"
-        aria-label="Scroll to turmeric bloom"
-        className="absolute bottom-3 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 sm:block md:bottom-8"
+        aria-label="Scroll to turmeric blooms"
+        className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 lg:hidden"
       >
         <ChevronDown className="size-7 sm:size-8" />
+      </a>
+      <a
+        href="#blooms"
+        aria-label="Scroll to turmeric blooms"
+        className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 animate-bounce text-white/75 lg:block"
+      >
+        <ChevronDown className="size-8" />
       </a>
     </section>
   )
