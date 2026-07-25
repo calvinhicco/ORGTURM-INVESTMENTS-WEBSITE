@@ -182,7 +182,12 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
     }
   }
 
-  const galleryPreview = useMemo(() => draft.galleryItems.slice(0, 60), [draft.galleryItems])
+  const galleryPreview = useMemo(() => {
+    const videos = draft.galleryItems.filter((g) => g.type === "video")
+    const images = draft.galleryItems.filter((g) => g.type !== "video")
+    // Prefer showing videos so they are not hidden behind the image-only head of the list
+    return [...videos, ...images].slice(0, 80)
+  }, [draft.galleryItems])
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-emerald-deep/80 p-3 backdrop-blur-sm sm:p-6">
@@ -406,7 +411,13 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
                         <div key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
                           <div className="relative aspect-square bg-secondary">
                             {item.type === "video" ? (
-                              <video src={item.src} className="h-full w-full object-cover" muted playsInline />
+                              <video
+                                src={`${item.src.includes("#") ? item.src : `${item.src}#t=0.001`}`}
+                                className="h-full w-full object-cover"
+                                muted
+                                playsInline
+                                preload="metadata"
+                              />
                             ) : (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />

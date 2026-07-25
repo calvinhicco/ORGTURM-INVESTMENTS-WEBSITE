@@ -145,7 +145,7 @@ export const whyChooseUs = [
   { title: "International Partnerships", desc: "Anchored by the University of Bonn and 60+ family-owned pharmaceutical companies.", icon: "Handshake" },
 ]
 
-export const galleryCategories = ["All", "Farms", "Turmeric", "Irrigation", "Harvest", "Project", "Videos"]
+export const galleryCategories = ["All", "Videos", "Farms", "Turmeric", "Irrigation", "Harvest", "Project"]
 
 export type GalleryItem = {
   src: string

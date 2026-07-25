@@ -57,20 +57,40 @@ async function writeBlobData(data: SiteData) {
 }
 
 export async function getSiteData(): Promise<SiteData> {
+  let data: SiteData | null = null
   if (useBlob()) {
-    const fromBlob = await readBlobData()
-    if (fromBlob) return fromBlob
+    data = await readBlobData()
   }
-  const fromFs = await readFsData()
-  if (fromFs) return fromFs
-  const seeded = defaultSiteData()
-  try {
-    if (useBlob()) await writeBlobData(seeded)
-    else await writeFsData(seeded)
-  } catch {
-    // read-only environments may not allow seed write
+  if (!data) {
+    data = await readFsData()
   }
-  return seeded
+  if (!data) {
+    const seeded = defaultSiteData()
+    try {
+      if (useBlob()) await writeBlobData(seeded)
+      else await writeFsData(seeded)
+    } catch {
+      // read-only environments may not allow seed write
+    }
+    return seeded
+  }
+  return ensureDefaultVideos(data)
+}
+
+/** Re-attach built-in project videos if a saved CMS snapshot dropped them. */
+function ensureDefaultVideos(data: SiteData): SiteData {
+  const defaults = defaultSiteData()
+  const defaultVideos = defaults.galleryItems.filter((g) => g.type === "video")
+  if (defaultVideos.length === 0) return data
+
+  const existing = new Set(data.galleryItems.map((g) => g.src))
+  const missing = defaultVideos.filter((g) => !existing.has(g.src))
+  if (missing.length === 0) return data
+
+  return {
+    ...data,
+    galleryItems: [...data.galleryItems, ...missing],
+  }
 }
 
 export async function saveSiteData(data: SiteData) {

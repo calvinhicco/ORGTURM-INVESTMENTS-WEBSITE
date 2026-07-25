@@ -16,18 +16,22 @@ export function Gallery() {
 
   const categories = useMemo(() => {
     const hasVideos = galleryItems.some((g) => g.type === "video" || g.category === "Videos")
-    const base = galleryCategories.includes("Videos")
-      ? galleryCategories
-      : hasVideos
-        ? [...galleryCategories, "Videos"]
-        : galleryCategories
-    return base
+    const rest = galleryCategories.filter((c) => c !== "All" && c !== "Videos")
+    // Keep Videos next to All so it is easy to find on mobile
+    return hasVideos ? ["All", "Videos", ...rest] : ["All", ...rest]
   }, [galleryItems])
 
-  const filtered = useMemo(
-    () => (category === "All" ? galleryItems : galleryItems.filter((g) => g.category === category)),
-    [category, galleryItems],
-  )
+  const filtered = useMemo(() => {
+    const items =
+      category === "All" ? galleryItems : galleryItems.filter((g) => g.category === category)
+    // Videos were last in the CMS list and looked "missing" under 100+ photos
+    if (category === "All") {
+      return [...items].sort((a, b) => Number(a.type !== "video") - Number(b.type !== "video"))
+    }
+    return items
+  }, [category, galleryItems])
+
+  const videoSrc = (src: string) => (src.includes("#") ? src : `${src}#t=0.001`)
 
   useEffect(() => {
     if (lightbox === null) return
@@ -104,7 +108,7 @@ export function Gallery() {
               {item.type === "video" ? (
                 <div className="relative aspect-[3/4] w-full bg-emerald-deep/90">
                   <video
-                    src={item.src}
+                    src={videoSrc(item.src)}
                     muted
                     playsInline
                     preload="metadata"
@@ -114,6 +118,9 @@ export function Gallery() {
                     <span className="flex size-14 items-center justify-center rounded-full bg-gold text-emerald-deep shadow-lg">
                       <Play className="size-6 fill-current" />
                     </span>
+                  </span>
+                  <span className="absolute left-3 top-3 rounded-full bg-gold px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-deep">
+                    Video
                   </span>
                 </div>
               ) : (
@@ -169,6 +176,7 @@ export function Gallery() {
                 controls
                 autoPlay
                 playsInline
+                preload="auto"
                 className="max-h-[78vh] w-auto max-w-full rounded-xl"
               />
             ) : (
