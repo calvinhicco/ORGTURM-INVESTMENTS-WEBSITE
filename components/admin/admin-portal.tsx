@@ -240,8 +240,44 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
           </form>
         ) : (
           <div className="grid min-h-0 flex-1 md:grid-cols-[210px_1fr]">
-            <nav className="border-b border-border md:border-b-0 md:border-r">
-              <ul className="flex gap-1 overflow-x-auto p-3 md:flex-col">
+            <nav className="relative shrink-0 border-b border-border md:border-b-0 md:border-r">
+              {/* Mobile: swipeable topic chips */}
+              <div className="md:hidden">
+                <p className="px-4 pt-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  Sections · swipe to see all
+                </p>
+                <div className="relative">
+                  <ul
+                    className="flex gap-2 overflow-x-auto overscroll-x-contain px-4 py-3 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory touch-pan-x [&::-webkit-scrollbar]:hidden"
+                    style={{ WebkitOverflowScrolling: "touch" }}
+                  >
+                    {MENU.map((item) => (
+                      <li key={item.id} className="shrink-0 snap-start">
+                        <button
+                          type="button"
+                          onClick={() => setSection(item.id)}
+                          className={cn(
+                            "flex items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
+                            section === item.id
+                              ? "border-primary bg-primary text-primary-foreground"
+                              : "border-border bg-card text-foreground",
+                          )}
+                        >
+                          <item.icon className="size-3.5 shrink-0" />
+                          {item.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-background to-transparent"
+                  />
+                </div>
+              </div>
+
+              {/* Desktop: vertical mini menu */}
+              <ul className="hidden gap-1 p-3 md:flex md:flex-col">
                 {MENU.map((item) => (
                   <li key={item.id}>
                     <button
