@@ -61,7 +61,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center px-4 pb-16 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 px-4 pb-16 pt-[8.75rem] sm:px-6 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-[8.5rem]">
         <div className="max-w-3xl animate-hero-rise">
           <p className="font-serif text-[1.65rem] font-bold leading-none tracking-tight text-gold sm:text-3xl lg:text-4xl">
             {company.shortName}
@@ -102,69 +102,26 @@ export function Hero() {
               Contact Us
             </a>
           </div>
-
-          {/* Mobile / tablet stills — compact overlapping strip */}
-          <div className="mt-7 lg:hidden">
-            <div className="relative mx-auto flex h-[9.25rem] max-w-md items-end justify-center sm:h-[11rem] sm:max-w-lg">
-              <div
-                className="absolute left-[2%] bottom-0 z-[1] h-[88%] w-[38%] overflow-hidden rounded-sm shadow-lg ring-1 ring-white/35 animate-hero-rise"
-                style={{ animationDelay: "160ms" }}
-              >
-                <Image src={heroStills[0].src} alt={heroStills[0].alt} fill sizes="38vw" className="object-cover" />
-              </div>
-              <div
-                className="absolute left-1/2 bottom-0 z-[3] h-full w-[42%] -translate-x-1/2 overflow-hidden rounded-sm shadow-xl ring-1 ring-white/40 animate-hero-rise"
-                style={{ animationDelay: "280ms" }}
-              >
-                <Image
-                  src={heroStills[1].src}
-                  alt={heroStills[1].alt}
-                  fill
-                  sizes="42vw"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <div
-                className="absolute right-[2%] bottom-0 z-[2] h-[88%] w-[38%] overflow-hidden rounded-sm shadow-lg ring-1 ring-white/35 animate-hero-rise"
-                style={{ animationDelay: "400ms" }}
-              >
-                <Image src={heroStills[2].src} alt={heroStills[2].alt} fill sizes="38vw" className="object-cover" />
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Desktop collage */}
-        <div className="relative hidden lg:block">
-          <div className="pointer-events-none absolute -inset-8 rounded-full bg-gold/10 blur-3xl" aria-hidden />
-          <div className="relative flex h-[min(72vh,640px)] flex-col justify-center">
+        {/* Three stills — separate, equal frames on mobile and desktop */}
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-3 lg:gap-4">
+          {heroStills.map((still, i) => (
             <div
-              className="absolute right-[8%] top-[4%] z-[1] h-[46%] w-[44%] overflow-hidden rounded-sm ring-1 ring-white/30 animate-hero-rise"
-              style={{ animationDelay: "180ms" }}
+              key={still.src}
+              className="relative aspect-[3/4] overflow-hidden rounded-sm ring-1 ring-white/35 animate-hero-rise"
+              style={{ animationDelay: `${160 + i * 120}ms` }}
             >
               <Image
-                src={heroStills[0].src}
-                alt={heroStills[0].alt}
+                src={still.src}
+                alt={still.alt}
                 fill
-                sizes="22vw"
+                sizes="(max-width: 1024px) 30vw, 14vw"
                 className="object-cover"
-                priority
+                priority={i === 0}
               />
             </div>
-            <div
-              className="absolute left-[2%] top-[22%] z-[2] h-[52%] w-[48%] overflow-hidden rounded-sm ring-1 ring-white/30 animate-hero-rise"
-              style={{ animationDelay: "320ms" }}
-            >
-              <Image src={heroStills[1].src} alt={heroStills[1].alt} fill sizes="24vw" className="object-cover" />
-            </div>
-            <div
-              className="absolute bottom-[2%] right-[0%] z-[3] h-[38%] w-[58%] overflow-hidden rounded-sm ring-1 ring-white/30 animate-hero-rise"
-              style={{ animationDelay: "460ms" }}
-            >
-              <Image src={heroStills[2].src} alt={heroStills[2].alt} fill sizes="28vw" className="object-cover" />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
