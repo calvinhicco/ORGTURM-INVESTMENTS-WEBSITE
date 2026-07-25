@@ -157,7 +157,8 @@
     background: linear-gradient(
       90deg,
       var(--gold) 0%,
-      color-mix(in oklch, var(--gold), white 25%) 100%
+      color-mix(in oklch, var(--gold), white 18%) 55%,
+      color-mix(in oklch, var(--gold), oklch(0.55 0.2 35) 35%) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
