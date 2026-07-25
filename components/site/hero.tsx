@@ -29,12 +29,12 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-end overflow-hidden lg:items-center"
     >
       <Image
-        src="/images/gallery/crop-35.jpg"
-        alt="Organic turmeric crop rows in the production field"
+        src="/images/hero/field-bg.png"
+        alt="Lush organic turmeric field under open sky"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[68%_35%] scale-105 animate-hero-kenburns sm:object-[center_40%]"
+        className="object-cover object-[center_55%] scale-105 animate-hero-kenburns sm:object-[center_45%]"
       />
 
       {/* Mobile: stronger bottom veil so type sits cleanly on the crop */}
