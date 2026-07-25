@@ -65,6 +65,8 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
   const [saving, setSaving] = useState(false)
   const [status, setStatus] = useState("")
   const [uploading, setUploading] = useState(false)
+  const [mediaFilter, setMediaFilter] = useState<"all" | "image" | "video">("all")
+  const [mediaQuery, setMediaQuery] = useState("")
 
   useEffect(() => {
     document.body.style.overflow = "hidden"
@@ -182,11 +184,25 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
     }
   }
 
-  const galleryPreview = useMemo(() => {
-    const videos = draft.galleryItems.filter((g) => g.type === "video")
-    const images = draft.galleryItems.filter((g) => g.type !== "video")
-    // Prefer showing videos so they are not hidden behind the image-only head of the list
-    return [...videos, ...images].slice(0, 80)
+  const galleryList = useMemo(() => {
+    const q = mediaQuery.trim().toLowerCase()
+    return draft.galleryItems.filter((g) => {
+      if (mediaFilter === "image" && g.type === "video") return false
+      if (mediaFilter === "video" && g.type !== "video") return false
+      if (!q) return true
+      return (
+        g.alt.toLowerCase().includes(q) ||
+        g.category.toLowerCase().includes(q) ||
+        g.src.toLowerCase().includes(q) ||
+        g.type.toLowerCase().includes(q)
+      )
+    })
+  }, [draft.galleryItems, mediaFilter, mediaQuery])
+
+  const galleryCounts = useMemo(() => {
+    const images = draft.galleryItems.filter((g) => g.type !== "video").length
+    const videos = draft.galleryItems.filter((g) => g.type === "video").length
+    return { images, videos, total: draft.galleryItems.length }
   }, [draft.galleryItems])
 
   return (
@@ -406,41 +422,85 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
                         />
                       </label>
                     </div>
-                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                      {galleryPreview.map((item) => (
-                        <div key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
-                          <div className="relative aspect-square bg-secondary">
-                            {item.type === "video" ? (
-                              <video
-                                src={`${item.src.includes("#") ? item.src : `${item.src}#t=0.001`}`}
-                                className="h-full w-full object-cover"
-                                muted
-                                playsInline
-                                preload="metadata"
-                              />
-                            ) : (
-                              // eslint-disable-next-line @next/next/no-img-element
-                              <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
-                            )}
-                          </div>
-                          <div className="flex items-center justify-between gap-2 p-2">
-                            <span className="truncate text-[11px] text-muted-foreground">
-                              {item.type} · {item.category}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => void deleteMedia(item.id)}
-                              className="rounded-full p-1.5 text-destructive hover:bg-destructive/10"
-                              aria-label="Delete"
-                            >
-                              <Trash2 className="size-3.5" />
-                            </button>
-                          </div>
-                        </div>
+
+                    <div className="flex flex-wrap items-center gap-2">
+                      {(
+                        [
+                          { id: "all" as const, label: `All (${galleryCounts.total})` },
+                          { id: "image" as const, label: `Photos (${galleryCounts.images})` },
+                          { id: "video" as const, label: `Videos (${galleryCounts.videos})` },
+                        ] as const
+                      ).map((tab) => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() => setMediaFilter(tab.id)}
+                          className={cn(
+                            "rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors",
+                            mediaFilter === tab.id
+                              ? "border-primary bg-primary text-primary-foreground"
+                              : "border-border bg-card text-foreground hover:border-primary/40",
+                          )}
+                        >
+                          {tab.label}
+                        </button>
                       ))}
                     </div>
+
+                    <input
+                      type="search"
+                      value={mediaQuery}
+                      onChange={(e) => setMediaQuery(e.target.value)}
+                      placeholder="Search by name, category, or file…"
+                      className={inputClass}
+                    />
+
+                    <div className="max-h-[min(52vh,520px)] overflow-y-auto rounded-xl border border-border bg-secondary/20 p-2.5 sm:p-3">
+                      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                        {galleryList.map((item) => (
+                          <div key={item.id} className="overflow-hidden rounded-lg border border-border bg-card">
+                            <div className="relative aspect-video bg-secondary">
+                              {item.type === "video" ? (
+                                <video
+                                  src={`${item.src.includes("#") ? item.src : `${item.src}#t=0.001`}`}
+                                  className="h-full w-full object-cover"
+                                  muted
+                                  playsInline
+                                  preload="none"
+                                />
+                              ) : (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={item.src} alt={item.alt} loading="lazy" className="h-full w-full object-cover" />
+                              )}
+                              {item.type === "video" && (
+                                <span className="absolute left-1.5 top-1.5 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-white">
+                                  Video
+                                </span>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-between gap-2 p-2">
+                              <span className="truncate text-[11px] text-muted-foreground">
+                                {item.type} · {item.category}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => void deleteMedia(item.id)}
+                                className="rounded-full p-1.5 text-destructive hover:bg-destructive/10"
+                                aria-label="Delete"
+                              >
+                                <Trash2 className="size-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      {galleryList.length === 0 && (
+                        <p className="py-8 text-center text-sm text-muted-foreground">No media matches this filter.</p>
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
-                      Showing {galleryPreview.length} of {draft.galleryItems.length} items.
+                      Showing {galleryList.length} of {galleryCounts.total} items — scroll the grid to browse all. Upload
+                      above, then Save changes.
                     </p>
                   </Fields>
                 )}

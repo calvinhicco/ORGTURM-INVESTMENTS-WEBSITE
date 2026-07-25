@@ -85,12 +85,19 @@ const LEGACY_PNG_TO_JPG: Record<string, string> = {
 }
 
 function normalizeAssetPaths(data: SiteData): SiteData {
+  const removed = new Set([
+    "/images/gallery/uploads/upload-045.jpg",
+    "/images/gallery/uploads/upload-046.jpg",
+    "/images/gallery/uploads/upload-082.jpg",
+  ])
   return {
     ...data,
-    galleryItems: data.galleryItems.map((g) => ({
-      ...g,
-      src: LEGACY_PNG_TO_JPG[g.src] || g.src,
-    })),
+    galleryItems: data.galleryItems
+      .filter((g) => !removed.has(g.src))
+      .map((g) => ({
+        ...g,
+        src: LEGACY_PNG_TO_JPG[g.src] || g.src,
+      })),
     leaders: data.leaders.map((l) => ({
       ...l,
       photoSrc: LEGACY_PNG_TO_JPG[l.photoSrc] || l.photoSrc,
