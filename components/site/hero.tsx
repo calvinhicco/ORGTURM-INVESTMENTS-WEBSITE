@@ -85,7 +85,7 @@ export function Hero() {
               <ArrowRight className="size-5" />
             </a>
             <a
-              href="#bloom-1"
+              href="#page-1a"
               className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 lg:hidden"
             >
               Learn More
@@ -97,20 +97,6 @@ export function Hero() {
             >
               Contact Us
             </a>
-          </div>
-
-          {/* Mobile: rhizome still only */}
-          <div className="mt-7 lg:hidden">
-            <div className="relative mx-auto aspect-[4/5] max-w-xs overflow-hidden rounded-sm ring-1 ring-white/35 animate-hero-rise">
-              <Image
-                src={rhizomeStill.src}
-                alt={rhizomeStill.alt}
-                fill
-                sizes="80vw"
-                className="object-cover"
-                priority
-              />
-            </div>
           </div>
         </div>
 
@@ -131,8 +117,8 @@ export function Hero() {
       </div>
 
       <a
-        href="#bloom-1"
-        aria-label="Scroll to turmeric blooms"
+        href="#page-1a"
+        aria-label="Scroll to turmeric rhizomes"
         className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/75 sm:bottom-6 lg:hidden"
       >
         <ChevronDown className="size-7 sm:size-8" />
