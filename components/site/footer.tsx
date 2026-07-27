@@ -95,7 +95,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {company.name}. A subsidiary of {company.parentShort}. All rights
             reserved.
           </p>
-          <p className="text-pretty">Organic Turmeric Production for German Market Standard Manual.</p>
+          <p className="text-pretty">Organic Turmeric Manual — production standards for the German market.</p>
         </div>
       </div>
     </footer>

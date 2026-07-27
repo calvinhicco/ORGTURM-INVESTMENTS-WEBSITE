@@ -68,8 +68,8 @@ export function ProductionStandards() {
             {title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
-            The complete standard manual governing our organic turmeric crop production management, reproduced in full.
-            Expand each stage to read the detailed protocol.
+            The complete Organic Turmeric Manual governing our organic turmeric crop production management, reproduced in
+            full. Expand each stage to read the detailed protocol.
           </p>
         </Reveal>
 
@@ -135,12 +135,12 @@ export function ProductionStandards() {
               ))}
             </div>
             <a
-              href="/organic-turmeric-standard-manual.txt"
-              download
+              href={productionManual.downloadHref}
+              download="Organic-Turmeric-Manual.pdf"
               className="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
             >
               <Download className="size-4" />
-              Download Full Manual
+              Download Organic Turmeric Manual (PDF)
             </a>
           </div>
         </Reveal>

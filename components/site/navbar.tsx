@@ -100,12 +100,12 @@ export function Navbar() {
               {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </button>
             <a
-              href="/organic-turmeric-standard-manual.txt"
-              download
+              href="/Organic-Turmeric-Manual.pdf"
+              download="Organic-Turmeric-Manual.pdf"
               className="ml-1 hidden items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition-transform hover:-translate-y-0.5 sm:inline-flex"
             >
               <Download className="size-4" />
-              Manual
+              Organic Turmeric Manual
             </a>
             <button
               type="button"
@@ -190,12 +190,12 @@ export function Navbar() {
             ))}
           </div>
           <a
-            href="/organic-turmeric-standard-manual.txt"
-            download
+            href="/Organic-Turmeric-Manual.pdf"
+            download="Organic-Turmeric-Manual.pdf"
             className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
           >
             <Download className="size-4" />
-            Download Standard Manual
+            Download Organic Turmeric Manual
           </a>
         </div>
       </div>
