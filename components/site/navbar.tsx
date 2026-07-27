@@ -102,7 +102,7 @@ export function Navbar() {
             <a
               href="/Organic-Turmeric-Manual.pdf"
               download="Organic-Turmeric-Manual.pdf"
-              className="ml-1 hidden items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition-transform hover:-translate-y-0.5 sm:inline-flex"
+              className="ml-1 hidden items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition-transform hover:-translate-y-0.5 lg:inline-flex"
             >
               <Download className="size-4" />
               Organic Turmeric Manual

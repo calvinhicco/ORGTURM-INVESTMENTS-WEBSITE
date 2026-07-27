@@ -60,40 +60,40 @@ export function Hero() {
             {company.tagline}
           </p>
 
-          <span className="mt-4 inline-flex max-w-full items-center gap-1.5 rounded-full border border-gold/45 bg-black/25 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-[2px] sm:mt-6 sm:gap-2 sm:px-4 sm:text-sm">
-            <BadgeCheck className="size-3.5 shrink-0 text-gold sm:size-4" />
-            <span className="sm:hidden">Certified Organic · German Market</span>
-            <span className="hidden sm:inline">
+          <span className="mt-4 inline-flex max-w-full items-center gap-1.5 rounded-full border border-gold/45 bg-black/25 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur-[2px] lg:mt-6 lg:gap-2 lg:px-4 lg:text-sm">
+            <BadgeCheck className="size-3.5 shrink-0 text-gold lg:size-4" />
+            <span className="lg:hidden">Certified Organic · German Market</span>
+            <span className="hidden lg:inline">
               Certified Organic &middot; Ecocert &middot; Fairtrade &middot; EU &middot; Mabagrown
             </span>
           </span>
 
-          <h1 className="mt-4 text-balance font-serif text-[1.85rem] font-bold leading-[1.12] text-white sm:mt-6 sm:text-5xl sm:leading-[1.05] lg:text-6xl xl:text-[4.25rem]">
+          <h1 className="mt-4 text-balance font-serif text-[1.85rem] font-bold leading-[1.12] text-white sm:text-4xl sm:leading-[1.08] lg:mt-6 lg:text-6xl lg:leading-[1.05] xl:text-[4.25rem]">
             {hero.headline} <span className="text-gradient-gold">{hero.highlight}</span>
           </h1>
 
-          <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-white/90 sm:mt-6 sm:text-lg">
-            <span className="line-clamp-3 sm:line-clamp-none">{hero.supporting}</span>
+          <p className="mt-3 max-w-xl text-pretty text-sm leading-relaxed text-white/90 lg:mt-6 lg:text-lg">
+            <span className="line-clamp-3 lg:line-clamp-none">{hero.supporting}</span>
           </p>
 
-          <div className="mt-6 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:items-center sm:gap-3">
+          <div className="mt-6 flex flex-col gap-2.5 lg:mt-9 lg:flex-row lg:items-center lg:gap-3">
             <a
               href="#blooms"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto max-lg:hidden"
+              className="hidden min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 lg:inline-flex"
             >
               Learn More
               <ArrowRight className="size-5" />
             </a>
             <a
               href="#bloom-1"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto lg:hidden"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-accent-foreground shadow-lg transition-transform hover:-translate-y-0.5 lg:hidden"
             >
               Learn More
               <ArrowRight className="size-5" />
             </a>
             <a
               href="#contact"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/45 bg-black/20 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-[2px] transition-colors hover:bg-black/25 sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-white/45 bg-black/20 px-7 py-3.5 text-base font-semibold text-white backdrop-blur-[2px] transition-colors hover:bg-black/25 lg:w-auto"
             >
               Contact Us
             </a>
