@@ -21,46 +21,29 @@ const blooms = [
 export function BloomPages() {
   return (
     <>
-      {/* Phone: one full portrait page per flower */}
+      {/* Phone: one full-screen flower per page — no crop, no field background */}
       <div className="lg:hidden">
         {blooms.map((bloom, index) => (
           <section
             key={bloom.id}
             id={bloom.id}
-            className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
+            className="relative h-[100svh] w-full overflow-hidden bg-emerald-deep"
           >
             <Image
-              src="/images/hero/field-bg.png"
-              alt=""
+              src={bloom.src}
+              alt={bloom.alt}
               fill
               sizes="100vw"
-              className="object-cover object-center"
+              className="object-contain object-center"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-emerald-deep/40" aria-hidden />
-
-            <div className="relative z-10 flex h-[min(92svh,920px)] w-[min(94vw,420px)] flex-col">
-              <div className="relative min-h-0 flex-1 overflow-hidden rounded-sm shadow-2xl ring-1 ring-white/30">
-                <Image
-                  src={bloom.src}
-                  alt={bloom.alt}
-                  fill
-                  sizes="94vw"
-                  className="object-cover object-center"
-                  priority={index === 0}
-                />
-              </div>
-              <p className="mt-3 text-center font-serif text-sm font-medium tracking-wide text-white/90">
-                {bloom.caption}
-              </p>
-            </div>
 
             <a
               href={index === 0 ? "#bloom-2" : "#about"}
               aria-label={index === 0 ? "Next bloom" : "Continue to about"}
-              className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 animate-bounce text-white/80"
+              className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/35 p-2 text-white/90 backdrop-blur-[2px]"
             >
-              <ChevronDown className="size-7" />
+              <ChevronDown className="size-7 animate-bounce" />
             </a>
           </section>
         ))}
