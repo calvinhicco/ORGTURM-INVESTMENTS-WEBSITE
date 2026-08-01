@@ -386,7 +386,7 @@ export const newsItems = [
 export const leaders = [
   {
     name: "Jacob Chazireni",
-    role: "National Project Operations Coordinator Â· Agroforestry Specialist Technician",
+    role: "National Project Operations Coordinator - Agroforestry Specialist Technician",
     detail:
       "Coordinates organic turmeric and medicinal herbs production, agronomy and budgets for the German market, driving certification of outgrower farmers and full farm records updates for traceability.",
     photoSrc: "/images/leaders/jacob-chazireni.jpg",

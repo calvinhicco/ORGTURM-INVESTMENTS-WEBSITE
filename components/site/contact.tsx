@@ -27,7 +27,7 @@ export function Contact() {
     },
     {
       icon: MapPin,
-      label: "Coordination",
+      label: "Coordinator",
       value: contact.coordination,
       href: undefined,
     },
