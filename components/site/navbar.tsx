@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
-import { Menu, X, Search, Moon, Sun, Download } from "lucide-react"
+import { Menu, X, Search, Moon, Sun } from "lucide-react"
 import { company, navLinks } from "@/lib/site-content"
 import { cn } from "@/lib/utils"
 import { AdminTrigger } from "@/components/admin/admin-portal"
@@ -99,14 +99,6 @@ export function Navbar() {
             >
               {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </button>
-            <a
-              href="/Organic-Turmeric-Manual.pdf"
-              download="Organic-Turmeric-Manual.pdf"
-              className="ml-1 hidden items-center gap-2 rounded-full bg-accent px-3.5 py-2 text-sm font-semibold text-accent-foreground shadow-sm transition-transform hover:-translate-y-0.5 lg:inline-flex"
-            >
-              <Download className="size-4" />
-              Organic Turmeric Manual
-            </a>
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
@@ -189,14 +181,6 @@ export function Navbar() {
               </div>
             ))}
           </div>
-          <a
-            href="/Organic-Turmeric-Manual.pdf"
-            download="Organic-Turmeric-Manual.pdf"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
-          >
-            <Download className="size-4" />
-            Download Organic Turmeric Manual
-          </a>
         </div>
       </div>
 

@@ -9,7 +9,6 @@ import {
   Leaf,
   Package,
   ChevronDown,
-  Download,
   FileText,
   type LucideIcon,
 } from "lucide-react"
@@ -128,20 +127,10 @@ export function ProductionStandards() {
         </div>
 
         <Reveal className="mt-8">
-          <div className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 sm:flex-row">
-            <div className="text-sm leading-relaxed text-muted-foreground">
-              {productionManual.signoffLines.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-            <a
-              href={productionManual.downloadHref}
-              download="Organic-Turmeric-Manual.pdf"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
-            >
-              <Download className="size-4" />
-              Download Organic Turmeric Manual (PDF)
-            </a>
+          <div className="rounded-2xl border border-border bg-card p-6 text-sm leading-relaxed text-muted-foreground">
+            {productionManual.signoffLines.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
           </div>
         </Reveal>
       </div>

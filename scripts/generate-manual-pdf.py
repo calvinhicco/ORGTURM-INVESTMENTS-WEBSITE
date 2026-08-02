@@ -4,7 +4,7 @@ from fpdf import FPDF
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "scripts" / "organic-turmeric-manual-source.txt"
-OUT = ROOT / "public" / "Organic-Turmeric-Manual.pdf"
+OUT = ROOT / "docs" / "Organic-Turmeric-Manual.pdf"
 
 HEADINGS = {
     "BACKGROUND",

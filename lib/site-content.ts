@@ -24,7 +24,6 @@ export const navLinks = [
 export const productionManual = {
   title: "Organic Turmeric Manual",
   documentTitle: "ORGANIC TURMERIC PRODUCTION FOR GERMAN MARKET STANDARD MANUAL",
-  downloadHref: "/Organic-Turmeric-Manual.pdf",
   sections: [
     {
       id: "background",
